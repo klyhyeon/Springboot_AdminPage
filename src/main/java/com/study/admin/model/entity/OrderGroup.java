@@ -14,22 +14,27 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@ToString(exclude = {"item", "orderGroup"})
-public class OrderDetail {
+@ToString(exclude = {"user", "orderDetailList"})
+public class OrderGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String status;
-    private LocalDateTime arrivalDate;
-    private int quantity;
+    private String orderType;
+    private String revAddress;
+    private String revName;
+    private String paymentType;
     private BigDecimal totalPrice;
+    private int totalQuantity;
+    private LocalDateTime orderAt;
+    private LocalDateTime arrivalDate;
     private LocalDateTime createdAt;
     private String createdBy;
     private LocalDateTime updatedAt;
     private String updatedBy;
     @ManyToOne
-    private OrderGroup orderGroup;
-    @ManyToOne
-    private Item item;
+    private User user;
+    @OneToMany(fetch = FetchType.LAZY,  mappedBy = "orderGroup")
+    private List<OrderDetail> orderDetailList;
 }

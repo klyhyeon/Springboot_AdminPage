@@ -3,33 +3,32 @@ package com.study.admin.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-import javax.persistence.*;
-import java.math.BigDecimal;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@ToString(exclude = {"item", "orderGroup"})
-public class OrderDetail {
+public class AdminUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String account;
+    private String password;
     private String status;
-    private LocalDateTime arrivalDate;
-    private int quantity;
-    private BigDecimal totalPrice;
+    private String role;
+    private LocalDateTime lastLoginAt;
+    private LocalDateTime passwordUpdatedAt;
+    private LocalDateTime registeredAt;
+    private LocalDateTime unregisteredAt;
     private LocalDateTime createdAt;
     private String createdBy;
     private LocalDateTime updatedAt;
     private String updatedBy;
-    @ManyToOne
-    private OrderGroup orderGroup;
-    @ManyToOne
-    private Item item;
 }
