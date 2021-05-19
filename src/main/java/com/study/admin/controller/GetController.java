@@ -1,9 +1,8 @@
 package com.study.admin.controller;
 
 import com.study.admin.model.SearchParam;
+import com.study.admin.model.network.Header;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api") // localhost:8080/api
@@ -30,5 +29,13 @@ public class GetController {
 
         // {"account" : "", "email" : "", "page" : 0}
         return searchParam;
+    }
+
+    @GetMapping("/header")
+    public Header getHeader() {
+        return Header.builder()
+                .resultCode("OK")
+                .description("OK")
+                .build();
     }
 }

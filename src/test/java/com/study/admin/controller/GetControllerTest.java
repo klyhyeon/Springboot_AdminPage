@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
+import sun.security.util.Debug;
 
 import static org.hamcrest.core.StringContains.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -16,10 +17,10 @@ class GetControllerTest {
     private MockMvc mvc;
 
     @Test
-    public void getMethodTest() throws Exception {
-        this.mvc.perform(get("/api/getMethod"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Hi ")));
+    public void getHeaderTest() throws Exception {
+        this.mvc.perform(get("/api/header"))
+                .andExpect(content().string(containsString("transaction_time")))
+                .andExpect(content().string(containsString("result_code")));
     }
 
     @Test

@@ -45,7 +45,6 @@ class PartnerRepositoryTest extends AdminApplicationTests {
         partner.setRegisteredAt(registeredAt);
         partner.setCreatedAt(createdAt);
         partner.setCreatedBy(createdBy);
-        partner.setCategoryId(categoryId);
 
         Partner newPartner = partnerRepository.save(partner);
         Assertions.assertNotNull(newPartner);

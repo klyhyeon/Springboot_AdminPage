@@ -1,9 +1,7 @@
 package com.study.admin.repository;
 
 import com.study.admin.AdminApplicationTests;
-import com.study.admin.model.entity.Item;
 import com.study.admin.model.entity.User;
-import org.apache.tomcat.jni.Local;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +17,11 @@ public class UserRepositoryTest extends AdminApplicationTests {
 
     @Test
     public void create() {
-        String account = "Test01";
-        String password = "Test01";
+        String account = "Test02";
+        String password = "Test02";
         String status = "REGISTERED";
         String email = "Test01@gmail.com";
-        String phoneNumber = "010-1111-2222";
+        String phoneNumber = "010-1111-3333";
         LocalDateTime registeredAt = LocalDateTime.now();
         LocalDateTime createdAt = LocalDateTime.now();
         String createdBy = "AdminServer";
@@ -35,8 +33,13 @@ public class UserRepositoryTest extends AdminApplicationTests {
         user.setEmail(email);
         user.setPhoneNumber(phoneNumber);
         user.setRegisteredAt(registeredAt);
-        user.setCreatedAt(createdAt);
-        user.setCreatedBy(createdBy);
+
+        User u = User.builder()
+                .account(account)
+                .password(password)
+                .status(status)
+                .email(email)
+                .build();
 
         User newUser = userRepository.save(user);
         Assertions.assertNotNull(newUser);
@@ -56,6 +59,9 @@ public class UserRepositoryTest extends AdminApplicationTests {
             System.out.println(orderGroup.getRevName());
             System.out.println("------------주문상세------------");
             orderGroup.getOrderDetailList().stream().forEach(orderDetail -> {
+                System.out.println("주문 상품: " + orderDetail.getItem().getName());
+                System.out.println("상품 카테고리: " + orderDetail.getItem().getPartner().getCategory().getTitle());
+                System.out.println("고객센터 번호: " + orderDetail.getItem().getPartner().getCallCenter());
                 System.out.println("주문의 상태 : " + orderDetail.getStatus());
                 System.out.println("도착예정일자: " + orderDetail.getArrivalDate());
             });
