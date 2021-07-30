@@ -33,7 +33,6 @@ class GetControllerTest {
     @Test
     public void getMultiParameterTest() throws Exception {
         this.mvc.perform(get("/api/getMultiParameter")
-
                 .requestAttr("account", "lee")
                 .requestAttr("email", "lee@gmail.com")
                 .requestAttr("page", 2))
